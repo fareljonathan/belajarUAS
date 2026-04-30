@@ -3,19 +3,19 @@
 <table border="1" cellpadding="10">
     <tr>
         <th>No</th>
-    <th>Nama Prodi</th>
-    <th>Singkatan</th>
-    <th>Kaprodi</th>
-    <th>Fakultas</th>
-    </tr>
+        <th>Nama Prodi</th>
+        <th>Singkatan</th>
+         <th>Kaprodi</th>
+         <th>Fakultas</th>
+     </tr>
     
     @foreach ($prodis as $key => $prodi)
     <tr>
-        <tr>{{$key + 1}}</tr>
-        <tr>{{$prodi->nama_prodi}}</tr>
-        <tr>{{$prodi->singkatan}}</tr>
-        <tr>{{$prodi->kaprodi}}</tr>
-        <tr>{{$prodi->fakultas->nama_fakultas ?? '-'}}</tr>
+        <td>{{$key + 1}}</td>
+        <td>{{$prodi->nama_prodi}}</td>
+        <td>{{$prodi->singkatan}}</td>
+        <td>{{$prodi->kaprodi}}</td>
+        <td>{{$prodi->fakultas->nama_fakultas ?? '-'}}</td>
     </tr>
         
     @endforeach
