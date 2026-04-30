@@ -12,7 +12,9 @@ class ProdiController extends Controller
      */
     public function index()
     {
-        //
+        //mengambil data prodi yang berkaitan dengan fakultas
+        $prodis = Prodi::with('fakultas')->get();
+        return view('prodi.index', compact('prodis'));
     }
 
     /**
