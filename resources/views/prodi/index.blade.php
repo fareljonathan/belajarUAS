@@ -5,8 +5,9 @@
         <th>No</th>
         <th>Nama Prodi</th>
         <th>Singkatan</th>
-         <th>Kaprodi</th>
-         <th>Fakultas</th>
+        <th>Kaprodi</th>
+        <th>Fakultas</th>
+        <th>Singkatan</th>
      </tr>
     
     @foreach ($prodis as $key => $prodi)
@@ -16,6 +17,7 @@
         <td>{{$prodi->singkatan}}</td>
         <td>{{$prodi->kaprodi}}</td>
         <td>{{$prodi->fakultas->nama_fakultas ?? '-'}}</td>
+        <td>{{$prodi->fakultas->singkatan}}</td>
     </tr>
         
     @endforeach
