@@ -11,13 +11,17 @@
                 <th>Singkatan</th>
             </tr>
         </thead>
+        
+        <tbody>
   
     @foreach ($result as $item)
     <tr>
         <td>{{ $item->nama_fakultas }}</td>
         <td>{{ $item->singkatan }}</td>
     </tr>
+    
 
     @endforeach
   </table>
+</tbody>
 @endsection

@@ -1,4 +1,23 @@
+@extends('main')
+
+@section('title', 'Periode')
+
+@section('content')
+    <a href="{{ route('periode.create')}}" class="btn btn-primary mb-3">Tambah</a>
+    <table class="table table-bordered" >
+        <thead>
+            <tr>
+                <th>Tahun Akademik</th>
+                <th>Semester</th>
+            </tr>
+        </thead>
+
 @foreach ($result as $item)
-{{ $item->tahun_akademik}} - {{$item->semester}} <br>
-    
+    <tr>
+        <td>{{ $item->tahun_akademik}}</td>
+        <td>{{$item->semester}}</td>
+    </tr>
+  
 @endforeach
+  </table>
+@endsection

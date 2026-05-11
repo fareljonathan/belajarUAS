@@ -355,6 +355,12 @@
                   <p>Prodi</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{ route('periode.index') }}" class="nav-link">
+                  <i class="nav-icon bi bi-calendar"></i>
+                  <p>Periode</p>
+                </a>
+              </li>
               
             </ul>
             <!--end::Sidebar Menu-->
@@ -418,7 +424,7 @@
                       </button>
                     </div>
                   </div>
-                  <div class="card-body">@yield('content')</div>
+                  <div class="card-body ">@yield('content')</div> 
                   <!-- /.card-body -->
                   <div class="card-footer">Footer</div>
                   <!-- /.card-footer-->
@@ -433,18 +439,7 @@
       </main>
       <!--end::App Main-->
       <!--begin::Footer-->
-      <footer class="app-footer">
-        <!--begin::To the end-->
-        <div class="float-end d-none d-sm-inline">Anything you want</div>
-        <!--end::To the end-->
-        <!--begin::Copyright-->
-        <strong>
-          Copyright &copy; 2014-2026&nbsp;
-          <a href="https://adminlte.io" class="text-decoration-none">AdminLTE.io</a>.
-        </strong>
-        All rights reserved.
-        <!--end::Copyright-->
-      </footer>
+    
       <!--end::Footer-->
     </div>
     <!--end::App Wrapper-->

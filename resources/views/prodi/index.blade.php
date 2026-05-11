@@ -3,9 +3,9 @@
 @section('title', 'Program Studi')
 
 @section('content')
-<h1>Data Prodi</h1>
+    <h1>Data Prodi</h1>
 
-<table class="table table-bordered">
+    <table class="table table-bordered">
     <tr>
         <th>No</th>
         <th>Nama Prodi</th>
