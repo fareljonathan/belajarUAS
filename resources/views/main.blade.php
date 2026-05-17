@@ -351,7 +351,7 @@
               </li>
               <li class="nav-item">
                 <a href="{{ route('prodi.index') }}" class="nav-link">
-                  <i class="nav-icon bi bi-building"></i>
+                  <i class="nav-icon bi bi-bank"></i>
                   <p>Prodi</p>
                 </a>
               </li>
