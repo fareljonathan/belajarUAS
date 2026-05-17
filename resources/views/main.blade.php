@@ -345,13 +345,13 @@
               </li>
               <li class="nav-item">
                 <a href="{{ route('fakultas.index') }}" class="nav-link">
-                  <i class="nav-icon bi bi-building"></i>
+                  <i class="nav-icon bi bi-palette"></i>
                   <p>Fakultas</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('prodi.index') }}" class="nav-link">
-                  <i class="nav-icon bi bi-bank"></i>
+                  <i class="nav-icon bi bi-building"></i>
                   <p>Prodi</p>
                 </a>
               </li>
@@ -424,7 +424,7 @@
                       </button>
                     </div>
                   </div>
-                  <div class="card-body ">@yield('content')</div> 
+                  <div class="card-body">@yield('content')</div>
                   <!-- /.card-body -->
                   <div class="card-footer">Footer</div>
                   <!-- /.card-footer-->
@@ -439,7 +439,18 @@
       </main>
       <!--end::App Main-->
       <!--begin::Footer-->
-    
+      <footer class="app-footer">
+        <!--begin::To the end-->
+        <div class="float-end d-none d-sm-inline">Anything you want</div>
+        <!--end::To the end-->
+        <!--begin::Copyright-->
+        <strong>
+          Copyright &copy; 2014-2026&nbsp;
+          <a href="https://adminlte.io" class="text-decoration-none">AdminLTE.io</a>.
+        </strong>
+        All rights reserved.
+        <!--end::Copyright-->
+      </footer>
       <!--end::Footer-->
     </div>
     <!--end::App Wrapper-->
