@@ -29,7 +29,7 @@
     <!--begin::Accessibility Features-->
     <!-- Skip links will be dynamically added by accessibility.js -->
     <meta name="supported-color-schemes" content="light dark" />
-    <link rel="preload" href="../css/adminlte.css" as="style" />
+    <link rel="preload" href="{{ url('css/adminlte.css') }}" as="style" />
     <!--end::Accessibility Features-->
 
     <!--begin::Fonts-->
@@ -60,7 +60,7 @@
     <!--end::Third Party Plugin(Bootstrap Icons)-->
 
     <!--begin::Required Plugin(AdminLTE)-->
-    <link rel="stylesheet" href="../css/adminlte.css" />
+    <link rel="stylesheet" href="{{ url('css/adminlte.css') }}" />
     <!--end::Required Plugin(AdminLTE)-->
   </head>
   <!--end::Head-->
@@ -269,9 +269,15 @@
                 <!--end::Menu Body-->
                 <!--begin::Menu Footer-->
                 <li class="user-footer">
-                  <a href="#" class="btn btn-outline-secondary">Profile</a>
-                  <a href="#" class="btn btn-outline-danger float-end">Sign out</a>
-                </li>
+          <a href="#" class="btn btn-outline-secondary">Profile</a>
+
+  <form method="POST" action="{{ route('logout') }}" class="float-end">
+    @csrf
+    <button type="submit" class="btn btn-outline-danger">
+      Sign out
+    </button>
+  </form>
+</li>
                 <!--end::Menu Footer-->
               </ul>
             </li>
@@ -344,8 +350,14 @@
                 </ul>
               </li>
               <li class="nav-item">
+                <a href="{{ route('periode.index') }}" class="nav-link">
+                  <i class="nav-icon bi bi-calendar"></i>
+                  <p>Periode</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="{{ route('fakultas.index') }}" class="nav-link">
-                  <i class="nav-icon bi bi-palette"></i>
+                  <i class="nav-icon bi bi-building"></i>
                   <p>Fakultas</p>
                 </a>
               </li>
@@ -356,9 +368,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('periode.index') }}" class="nav-link">
-                  <i class="nav-icon bi bi-calendar"></i>
-                  <p>Periode</p>
+                <a href="{{ route('mahasiswa.index') }}" class="nav-link">
+                  <i class="nav-icon bi bi-people"></i>
+                  <p>Mahasiswa</p>
                 </a>
               </li>
               
@@ -424,7 +436,9 @@
                       </button>
                     </div>
                   </div>
-                  <div class="card-body">@yield('content')</div>
+                  <div class="card-body">
+                    @yield('content')
+                  </div>
                   <!-- /.card-body -->
                   <div class="card-footer">Footer</div>
                   <!-- /.card-footer-->
@@ -503,6 +517,30 @@
     </script>
     <!--end::OverlayScrollbars Configure-->
     <!--end::Script-->
+    {{-- jQuery cdn --}}
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
+
+    {{-- sweetalert --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+    <script type="text/javascript">
+        $('.show_confirm').click(function(event) {
+            var form = $(this).closest("form");
+            var nama = $(this).data("nama");
+            event.preventDefault();
+            swal({
+                    title: `Apakah Anda yakin ingin menghapus data ${nama} ini?`,
+                    text: "If you delete this, it will be gone forever.",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        form.submit();
+                    }
+                });
+        });
+    </script>
   </body>
   <!--end::Body-->
 </html>

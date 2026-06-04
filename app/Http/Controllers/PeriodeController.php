@@ -12,8 +12,8 @@ class PeriodeController extends Controller
      */
     public function index()
     {
-        $result = Periode::all();//select * from fakultas
-        // dd($result);
+        // akses model Periode
+        $result = Periode::all();
         return view('periode.index', compact('result'));
     }
 
@@ -22,7 +22,7 @@ class PeriodeController extends Controller
      */
     public function create()
     {
-        return  view('periode.create');
+        return view('periode.create');
     }
 
     /**
@@ -30,14 +30,16 @@ class PeriodeController extends Controller
      */
     public function store(Request $request)
     {
+        // validasi input
         $input = $request->validate([
-            'tahun_akademik' => 'required|unique:periode', 'semester' => 'required'
+            'tahun_akademik' => 'required',
+            'semester' => 'required'
         ]);
 
-        //simpan ke tabel fakultas
+        // simpan data ke tabel fakultas
         Periode::create($input);
 
-        //redirect ke route fakultas.index
+        // redirect ke route fakultas.index
         return redirect()->route('periode.index');
     }
 
@@ -52,9 +54,12 @@ class PeriodeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Periode $periode)
+    public function edit($periode)
     {
-        //
+        $periode = Periode::find($periode);
+        //cari data berdasarkan id
+
+        return view('periode.edit', compact('periode'));
     }
 
     /**
@@ -62,7 +67,16 @@ class PeriodeController extends Controller
      */
     public function update(Request $request, Periode $periode)
     {
-        //
+       $input = $request->validate([
+        'tahun_akademik' =>
+            'required|unique:periodes,tahun_akademik,' . $periode->id . ',id',
+
+        'semester' => 'required'
+    ]);
+
+    $periode->update($input);
+
+    return redirect('/periode');
     }
 
     /**
@@ -70,6 +84,7 @@ class PeriodeController extends Controller
      */
     public function destroy(Periode $periode)
     {
-        //
+        $periode->delete(); // hapus data fakultas
+        return redirect()->route('periode.index');
     }
 }

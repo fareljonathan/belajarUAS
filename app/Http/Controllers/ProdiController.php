@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fakultas;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,6 @@ class ProdiController extends Controller
      */
     public function index()
     {
-        //mengambil data prodi yang berkaitan dengan fakultas
         $prodis = Prodi::with('fakultas')->get();
         return view('prodi.index', compact('prodis'));
     }
@@ -22,7 +22,8 @@ class ProdiController extends Controller
      */
     public function create()
     {
-        //
+        $fakultas = Fakultas::all();
+        return view('prodi.create', compact('fakultas'));
     }
 
     /**
@@ -30,7 +31,19 @@ class ProdiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validasi input
+        $input = $request->validate([
+            'nama_prodi' => 'required|unique:prodis',
+            'singkatan' => 'required',
+            'kaprodi' => 'required',
+            'fakultas_id' => 'required'
+        ]);
+
+        // simpan data ke tabel prodi
+        Prodi::create($input);
+
+        // redirect ke route prodi.index
+        return redirect()->route('prodi.index');
     }
 
     /**
@@ -44,17 +57,30 @@ class ProdiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Prodi $prodi)
+    public function edit( $prodi)
     {
-        //
+        $prodi = Prodi::find($prodi);
+        //cari data berdasarkan id
+        $fakultas = Fakultas::all();
+
+        return view('prodi.edit', compact('prodi', 'fakultas'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Prodi $prodi)
+    public function update(Request $request, $prodi)
     {
-        //
+       
+        $input = $request->validate([
+        'nama_prodi' => 'required|unique:prodis,nama_prodi,' .$prodi,
+        'singkatan' => 'required',
+        'kaprodi' => 'required',
+        'fakultas_id' => 'required',
+    ]);
+     Prodi::where('id', $prodi)->update($input);
+
+    return redirect('/prodi');
     }
 
     /**
@@ -62,6 +88,7 @@ class ProdiController extends Controller
      */
     public function destroy(Prodi $prodi)
     {
-        //
+        $prodi->delete(); // hapus data prodi
+        return redirect()->route('prodi.index');
     }
 }
